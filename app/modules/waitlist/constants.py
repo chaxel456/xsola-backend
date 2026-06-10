@@ -1,0 +1,3 @@
+WAITLIST_PENDING = "pending"
+WAITLIST_CONTACTED = "contacted"
+WAITLIST_CONVERTED = "converted"
