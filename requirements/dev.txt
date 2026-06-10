@@ -1,7 +1,0 @@
--r base.txt
-
-pytest
-pytest-asyncio
-black
-isort
-flake8
