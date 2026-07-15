@@ -1,0 +1,1 @@
+from app.modules.telemetry.routes import router

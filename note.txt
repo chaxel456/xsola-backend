@@ -1,0 +1,891 @@
+xsola-backend/
+│
+├── app/
+│   │
+│   ├── main.py
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── security.py
+│   │   ├── dependencies.py
+│   │   ├── permissions.py
+│   │   └── exceptions.py
+│   │
+│   ├── api/
+│   │   └── v1/
+│   │       ├── router.py
+│   │       ├── auth.py
+│   │       ├── users.py
+│   │       ├── waitlist.py
+│   │       ├── customers.py
+│   │       ├── devices.py
+│   │       ├── subscriptions.py
+│   │       ├── payments.py
+│   │       ├── telemetry.py
+│   │       ├── notifications.py
+│   │       └── reports.py
+│   │
+│   ├── modules/
+│   │
+│   │   ├── auth/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── users/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── waitlist/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── customers/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── devices/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── subscriptions/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── payments/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── telemetry/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   ├── notifications/
+│   │   │   ├── model.py
+│   │   │   ├── schema.py
+│   │   │   ├── repository.py
+│   │   │   ├── service.py
+│   │   │   └── routes.py
+│   │   │
+│   │   └── reports/
+│   │       ├── schema.py
+│   │       ├── service.py
+│   │       └── routes.py
+│   │
+│   ├── services/
+│   │   ├── email_service.py
+│   │   ├── sms_service.py
+│   │   ├── payment_service.py
+│   │   ├── mqtt_service.py
+│   │   ├── notification_service.py
+│   │   └── file_service.py
+│   │
+│   ├── websocket/
+│   │   └── telemetry_ws.py
+│   │
+│   ├── tasks/
+│   │   ├── subscriptions.py
+│   │   ├── notifications.py
+│   │   ├── telemetry.py
+│   │   └── reports.py
+│   │
+│   ├── middleware/
+│   │   ├── logging.py
+│   │   └── rate_limit.py
+│   │
+│   └── utils/
+│       ├── helpers.py
+│       ├── constants.py
+│       └── validators.py
+│
+├── tests/
+│   ├── test_auth.py
+│   ├── test_waitlist.py
+│   ├── test_customers.py
+│   ├── test_devices.py
+│   ├── test_payments.py
+│   └── test_subscriptions.py
+│
+├── alembic/
+│
+├── requirements/
+│   ├── base.txt
+│   └── dev.txt
+│
+uploads/
+├── customers/
+├── devices/
+├── reports/
+
+
+├── .env
+├── .env.example
+├── Dockerfile
+├── docker-compose.yml
+├── render.yaml
+├── README.md
+└── requirements.txttxt
+
+https://xsola.lovable.app/
+
+python -m pytest
+
+
+python -m uvicorn app.main:app --reload
+
+✅ Paystack Integration
+
+initialize payment
+verify payment
+webhook
+Phase 2
+
+
+git add .
+git commit -m "Prepare backend for Render"
+git push origin main
+
+
+
+✅ Notification System
+
+email
+SMS
+Phase 3
+
+✅ MQTT Device Control
+
+lock/unlock devices after payment
+Phase 4
+
+✅ Opay Integration
+
+wallet payments
+QR payments
+
+This gives you a working end-to-end flow:
+
+Customer → Paystack → Verification → Subscription → MQTT Device Activation → Email/SMS Notification.
+
+Let's build Phase 1 (Paystack Integration) next, starting with services/payment_service.py and the FastAPI endpoints.
+
+Tomorrow's priority list
+Paystack Integration
+/payments/initialize
+/payments/verify/{reference}
+/payments/webhook
+Ngrok setup
+Expose localhost
+Test Paystack webhooks
+Email Service
+Welcome emails
+Payment receipts
+SMS Service
+Termii or Twilio
+MQTT Service
+Device communication
+Smart meter telemetry
+WebSocket Live Dashboard
+Real-time device monitoring
+Docker Deployment
+Prepare XSOLA for productio
+
+
+What is NOT Ready Yet
+
+These backend features still need implementation before the frontend can fully use them:
+
+❌ Paystack payment processing
+
+❌ OPay integration
+
+❌ Email sending
+
+❌ SMS sending
+
+❌ MQTT device communication
+
+❌ WebSocket real-time updates
+
+❌ File uploads
+
+❌ Role-based permissions
+
+❌ Password reset
+
+❌ Customer KYC
+
+❌ Branch management
+
+
+
+
+settings.DATABASE_URL,
+
+
+
+
+1. database.py
+2. config.py
+3. auth
+4. users
+5. waitlist
+6. customers
+7. devices
+8. payments
+9. subscriptions
+10. telemetry
+11. websocket
+12. tests
+
+
+
+
+
+today goal set api core 
+link core file to db
+
+
+frontend
+/api/v1/auth/*
+/api/v1/users/*
+/api/v1/customers/*
+/api/v1/devices/*
+/api/v1/subscriptions/*
+/api/v1/payments/*
+/api/v1/waitlist/*
+/api/v1/telemetry/*
+
+
+Dashboard
+│
+├── Authentication
+│   ├── Login
+│   └── Forgot Password
+│
+├── Dashboard
+│   ├── Overview
+│   ├── Revenue Cards
+│   ├── Device Status
+│   └── Recent Activity
+│
+├── Users
+│   ├── List
+│   ├── Create
+│   └── Details
+│
+├── Customers
+│   ├── List
+│   ├── Create
+│   ├── Profile
+│   └── Customer Devices
+│
+├── Devices
+│   ├── List
+│   ├── Add Device
+│   ├── Device Details
+│   └── Live Status
+│
+├── Subscriptions
+│   ├── Plans
+│   ├── Active
+│   └── History
+│
+├── Payments
+│   ├── Make Payment
+│   ├── Payment History
+│   └── Receipts
+│
+├── Telemetry
+│   ├── Dashboard
+│   ├── Live Monitoring
+│   └── Power Usage Charts
+│
+├── Notifications
+│   ├── Inbox
+│   └── Alerts
+│
+├── Reports
+│   ├── Analytics
+│   ├── Revenue
+│   └── Export Reports
+│
+└── Settings
+    ├── Profile
+    ├── Roles
+    ├── API Keys
+    └── System Settings
+
+
+
+
+
+
+
+
+app/core/
+├── config.py
+├── database.py
+├── security.py
+├── dependencies.py
+├── permissions.py
+└── exceptions.py
+
+
+
+
+modules/
+├── auth/
+└── users/ Features
+Login
+
+Refresh Token
+
+Logout
+
+Change Password
+
+Forgot Password
+
+Reset Password
+
+User CRUD
+
+Role Management
+
+Branch Assignment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from datetime import datetime
+
+from sqlalchemy import DateTime, String
+from sqlalchemy.orm import Mapped, mapped_column
+
+from app.core.database import Base
+
+
+class Waitlist(Base):
+    __tablename__ = "waitlist"
+
+    id: Mapped[int] = mapped_column(
+        primary_key=True,
+        index=True,
+    )
+
+    full_name: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    email: Mapped[str] = mapped_column(
+        String(255),
+        unique=True,
+        nullable=False,
+        index=True,
+    )
+
+    phone: Mapped[str] = mapped_column(
+        String(50),
+        nullable=True,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CONNCET SERVICES AND  REPORT
+
+
+✅ GitHub
+✅ FastAPI
+✅ Swagger
+
+NEXT
+
+🔲 PostgreSQL
+🔲 Alembic
+🔲 JWT Roles
+🔲 Subscriptions
+🔲 Notifications
+🔲 Reports
+🔲 Docker
+🔲 Render Deployment
+🔲 CI/CD
+
+
+
+
+
+
+
+
+modules/
+└── branches/
+modules/
+└── customers/
+modules/
+└── waitlist/
+modules/
+└── subscriptions/
+modules/
+└── payments/
+modules/
+└── notifications/
+modules/
+└── telemetry/
+websocket/
+└── telemetry_ws.py
+
+
+
+
+
+
+1. security.py
+Password hashing (bcrypt)
+
+Verify password
+
+Create JWT access tokens
+
+Decode JWT tokens
+
+2. dependencies.py
+get_db
+
+get_current_user
+
+get_current_active_user
+
+get_current_admin
+
+3. permissions.py
+Roles:
+
+Super Admin
+
+Branch Manager
+
+Staff
+
+Permission decorators/dependencies
+
+4. Create the first database model
+modules/auth/
+├── model.py
+├── schema.py
+├── repository.py
+├── service.py
+└── routes.py
+Start with a User model:
+
+users
+├── id
+├── email
+├── username
+├── password_hash
+├── role
+├── is_active
+├── created_at
+
+
+
+
+#
+modules/auth/
+├── model.py       # User table
+├── schema.py      # Pydantic schemas
+├── repository.py  # DB queries
+├── service.py     # Business logic
+└── routes.py      # API endpoints
+
+
+
+# app/modules/users/service.py
+
+from sqlalchemy.orm import Session
+
+from app.modules.users.repository import UserRepository
+
+
+class UserService:
+
+    @staticmethod
+    def get_all_users(db: Session):
+        return UserRepository.get_all(db)
+
+    @staticmethod
+    def get_user_by_id(
+        db: Session,
+        user_id: int
+    ):
+        return UserRepository.get_by_id(
+            db,
+            user_id
+        )
+
+    @staticmethod
+    def get_user_by_email(
+        db: Session,
+        email: str
+    ):
+        return UserRepository.get_by_email(
+            db,
+            email
+        )
+
+
+
+
+
+
+
+
+
+
+
+Given where XSOLA is today, I would **not** wait until the backend is 100% finished before starting the frontend.
+
+The best approach is to build them together.
+
+### What we've already completed in the backend
+
+You already have enough APIs for a frontend developer to be productive:
+
+* ✅ Authentication
+* ✅ Users
+* ✅ Customers
+* ✅ Devices
+* ✅ Subscriptions
+* ✅ Payments (including Paystack initialization)
+* ✅ Reports dashboard
+* ✅ Notifications
+* ✅ MQTT connection
+* ✅ Scheduler
+* 🚧 Telemetry (partially complete)
+
+That's enough to build about **75–80%** of the frontend.
+
+
+## I recommend this workflow
+
+### Phase 1 (Now): Build the Frontend
+
+Build every page and connect it to the APIs that already exist.
+
+```
+Frontend
+      │
+      ▼
+FastAPI APIs
+```
+
+For features that aren't finished yet (like live telemetry), display placeholder data or loading states until the backend is ready.
+
+---
+
+### Phase 2
+
+Return to the backend to complete:
+
+* Telemetry
+* MQTT commands
+* Payment webhooks
+* Background jobs
+* Hardware integration
+
+---
+
+## I'd actually improve your navigation a little
+
+```
+Dashboard
+│
+├── Authentication
+│   ├── Login
+│   └── Forgot Password
+│
+├── Dashboard
+│   ├── Overview
+│   ├── Revenue Cards
+│   ├── Device Status
+│   └── Recent Activity
+│
+├── Users
+│   ├── List
+│   ├── Create
+│   └── Details
+│
+├── Customers
+│   ├── List
+│   ├── Create
+│   ├── Profile
+│   └── Customer Devices
+│
+├── Devices
+│   ├── List
+│   ├── Add Device
+│   ├── Device Details
+│   └── Live Status
+│
+├── Subscriptions
+│   ├── Plans
+│   ├── Active
+│   └── History
+│
+├── Payments
+│   ├── Make Payment
+│   ├── Payment History
+│   └── Receipts
+│
+├── Telemetry
+│   ├── Dashboard
+│   ├── Live Monitoring
+│   └── Power Usage Charts
+│
+├── Notifications
+│   ├── Inbox
+│   └── Alerts
+│
+├── Reports
+│   ├── Analytics
+│   ├── Revenue
+│   └── Export Reports
+│
+└── Settings
+    ├── Profile
+    ├── Roles
+    ├── API Keys
+    └── System Settings
+```
+
+---
+
+## Tech stack I'd use
+
+Since your backend is FastAPI, I'd pair it with:
+
+* **Next.js 15**
+* **React 19**
+* **TypeScript**
+* **Tailwind CSS**
+* **shadcn/ui**
+* **TanStack Query** (for API calls and caching)
+* **Axios**
+* **React Hook Form**
+* **Zod** (form validation)
+* **Recharts** (analytics and telemetry charts)
+
+This stack is modern, works well with FastAPI, and is suitable for a production dashboard.
+
+---
+
+## Development plan
+
+We'll build it in this order:
+
+1. Project setup
+2. Authentication
+3. Dashboard layout
+4. API integration layer
+5. Customers
+6. Devices
+7. Payments
+8. Subscriptions
+9. Notifications
+10. Reports
+11. Telemetry
+12. Real-time updates (WebSocket/MQTT)
+
+---
+
+I think this is the right time to start the frontend. By the time we finish building the UI and connecting the existing APIs, we'll know exactly which backend pieces still need work, and we can complete those without blocking frontend development.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+src/
+
+app/
+│
+├── page.tsx
+├── dashboard/
+│   └── waitlist/
+│       └── page.tsx
+│
+├── components/
+│   ├── layout/
+│   ├── ui/
+│   ├── landing/
+│   ├── waitlist/
+│   │     WaitlistForm.tsx
+│   │     WaitlistStats.tsx
+│   │     WaitlistTable.tsx
+│   │     WaitlistCard.tsx
+│   │
+│   └── shared/
+│
+├── hooks/
+│     useWaitlist.ts
+│
+├── services/
+│     api.ts
+│     waitlist.ts
+│
+├── types/
+│     waitlist.ts
+│
+├── lib/
+│     utils.ts
+│
+└── constants/
+      interests.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xsola-frontend/
+
+src/
+│
+├── app/
+│   ├── (auth)/
+│   │   ├── login/
+│   │   └── register/
+│   │
+│   ├── dashboard/
+│   │   ├── page.tsx
+│   │   ├── users/
+│   │   ├── customers/
+│   │   ├── devices/
+│   │   ├── subscriptions/
+│   │   ├── payments/
+│   │   ├── notifications/
+│   │   ├── reports/
+│   │   ├── telemetry/
+│   │   └── settings/
+│   │
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── layout/
+│   ├── ui/
+│   ├── forms/
+│   ├── cards/
+│   ├── charts/
+│   ├── tables/
+│   ├── modals/
+│   └── shared/
+│
+├── services/
+│   ├── api.ts
+│   ├── auth.ts
+│   ├── customers.ts
+│   ├── devices.ts
+│   ├── payments.ts
+│   ├── reports.ts
+│   ├── subscriptions.ts
+│   └── notifications.ts
+│
+├── hooks/
+│
+├── lib/
+│
+├── providers/
+│
+├── types/
+│
+├── utils/
+│
+├── store/
+│
+└── middleware.ts
+
+
+
+
